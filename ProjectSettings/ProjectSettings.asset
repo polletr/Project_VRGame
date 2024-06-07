@@ -161,7 +161,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.TeamKrakenHunters
+    Android: com.unity.TeamKrakenHunters
     Standalone: com.Unity-Technologies.VR-Template
   buildNumber:
     Standalone: 0
