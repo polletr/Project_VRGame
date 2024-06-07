@@ -22,6 +22,10 @@ public class Spawner : MonoBehaviour
     private float gravity = 9.81f;
     private float initialSpeedX;
 
+    [SerializeField]
+    private float minTorque = 5f; // Minimum torque applied to the object
+    [SerializeField]
+    private float maxTorque = 15f; // Maximum torque applied to the object
 
     // Start is called before the first frame update
     void Start()
@@ -73,6 +77,14 @@ public class Spawner : MonoBehaviour
             Vector3 initialVelocity = new Vector3(initialSpeedX, initialSpeedY, 0);
 
             rb.velocity = initialVelocity;
+
+            // Apply a random rotation to the object
+            Vector3 randomTorque = new Vector3(
+                Random.Range(minTorque, maxTorque),
+                Random.Range(minTorque, maxTorque),
+                Random.Range(minTorque, maxTorque)
+            );
+            rb.AddTorque(randomTorque, ForceMode.Impulse);
         }
     }
 
