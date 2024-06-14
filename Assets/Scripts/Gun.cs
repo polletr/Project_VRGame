@@ -13,6 +13,11 @@ public class Gun : MonoBehaviour
     [SerializeField]
     private Transform _bulletSpawnPoint;
 
+    [SerializeField, Header("Aim Settings")]
+    private LineRenderer _lineRenderer;
+    [SerializeField]
+    private float _maxAimDistance = 100f;
+
     float _timer;
     bool isShooting;
     void Update()
@@ -21,10 +26,48 @@ public class Gun : MonoBehaviour
         _timer += Time.deltaTime;
         if (isShooting && _timer >= _fireRate)
         {
-            GameObject bullet = Instantiate(bulletPrefab, _bulletSpawnPoint.position, _bulletSpawnPoint.rotation);
+            Shoot();
             _timer = 0;
-            Debug.Log("Shoot");
         }
 
+        UpdateAimLine();
+
+    }
+
+    private void Shoot()
+    {
+        Ray ray = new Ray(_bulletSpawnPoint.position, _bulletSpawnPoint.forward);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, _maxAimDistance))
+        {
+            ITargetable target = hit.collider.GetComponent<ITargetable>();
+            if (target != null)
+            {
+                target.OnHit();
+                Debug.Log("Shoot");
+
+            }
+        }
+
+    }
+
+    private void UpdateAimLine()
+    {
+        Ray ray = new Ray(_bulletSpawnPoint.position, _bulletSpawnPoint.forward);
+        RaycastHit hit;
+
+        Vector3 endPosition;
+        if (Physics.Raycast(ray, out hit, _maxAimDistance))
+        {
+            endPosition = hit.point;
+        }
+        else
+        {
+            endPosition = ray.GetPoint(_maxAimDistance);
+        }
+
+        _lineRenderer.SetPosition(0, _bulletSpawnPoint.position);
+        _lineRenderer.SetPosition(1, endPosition);
     }
 }
