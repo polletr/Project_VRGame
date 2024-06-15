@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface ITargetable
 {
-    void OnHit();
+   public void OnHit();
 }

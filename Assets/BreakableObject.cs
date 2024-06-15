@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BreakableObject : MonoBehaviour, ITargetable
 {
@@ -8,12 +10,18 @@ public class BreakableObject : MonoBehaviour, ITargetable
     private GameObject FullObj;
     [SerializeField]
     private GameObject ShatterObj;
+    [SerializeField]
+    private Transform explodePoint;
 
-    private Rigidbody rb;
+    public UnityEvent OnBreak;
+
+    [SerializeField]
+    private float force = 100f;
+    [SerializeField]
+    private GameObject[] shardPeices;
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
         Switch(true);
         
     }
@@ -22,20 +30,31 @@ public class BreakableObject : MonoBehaviour, ITargetable
         //if (!other.CompareTag("Objects"))
         if(other.gameObject.layer != LayerMask.NameToLayer("Objects"))
         {
+            OnBreak.Invoke();
             Switch(false);
             Destroy(gameObject, 3f);
         }
     }
 
-    void ITargetable.OnHit()
+    public void OnHit()
     {
+        OnBreak.Invoke();
         Debug.Log("collided");
         Switch(false);
         Destroy(gameObject, 3f);
 
 
-        rb.AddForce(new Vector3(1,1,1));
+        Explode();
 
+    }
+     
+    public void Explode()
+    {
+        foreach (GameObject obj in shardPeices)
+        {
+            Vector3 dir = obj.transform.position - explodePoint.position;
+            obj.GetComponent<Rigidbody>().AddForce(dir * force);
+        }
     }
 
 

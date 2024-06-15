@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7105199106522906425}
   - component: {fileID: 969015302537709529}
   - component: {fileID: 5290741096330048313}
+  - component: {fileID: 3202360839873555658}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -157,6 +158,20 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!114 &3202360839873555658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6629968214261891008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b79d2a6cfdaf5be4998b1dcd898ffa91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intensity: 0.826
+  duration: 0.5
 --- !u!1 &7700183770335297406
 GameObject:
   m_ObjectHideFlags: 0
