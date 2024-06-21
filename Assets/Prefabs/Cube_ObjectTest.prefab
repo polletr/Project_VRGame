@@ -165,9 +165,7 @@ MonoBehaviour:
   FullObj: {fileID: 540295744313247696}
   ShatterObj: {fileID: 2620704869300705395}
   explodePoint: {fileID: 4980322750027224033}
-  OnBreak:
-    m_PersistentCalls:
-      m_Calls: []
+  Event: {fileID: 11400000, guid: ca9cd37548ba1174aacb9e50199d876d, type: 2}
   force: 500
   shardPeices:
   - {fileID: 7795461896308188094}

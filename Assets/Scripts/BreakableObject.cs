@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class BreakableObject : MonoBehaviour, ITargetable
 {
@@ -13,7 +9,10 @@ public class BreakableObject : MonoBehaviour, ITargetable
     [SerializeField]
     private Transform explodePoint;
 
-    public UnityEvent OnBreak;
+    [SerializeField]
+    private int scoreValue = 1;
+
+    public GameEvent Event;
 
     [SerializeField]
     private float force = 100f;
@@ -23,14 +22,14 @@ public class BreakableObject : MonoBehaviour, ITargetable
     private void Awake()
     {
         Switch(true);
-        
+
     }
     public void OnTriggerEnter(Collider other)
     {
         //if (!other.CompareTag("Objects"))
-        if(other.gameObject.layer != LayerMask.NameToLayer("Objects"))
+        if (other.gameObject.layer != LayerMask.NameToLayer("Objects"))
         {
-            OnBreak.Invoke();
+            //Event.OnBreak.Invoke(scoreValue);
             Switch(false);
             Destroy(gameObject, 3f);
         }
@@ -38,7 +37,7 @@ public class BreakableObject : MonoBehaviour, ITargetable
 
     public void OnHit()
     {
-        OnBreak.Invoke();
+        Event.OnBreak.Invoke(scoreValue);
         Debug.Log("collided");
         Switch(false);
         Destroy(gameObject, 3f);
@@ -47,7 +46,7 @@ public class BreakableObject : MonoBehaviour, ITargetable
         Explode();
 
     }
-     
+
     public void Explode()
     {
         foreach (GameObject obj in shardPeices)
