@@ -6,4 +6,5 @@ using UnityEngine.Events;
 public class GameEvent : ScriptableObject
 {
     public UnityEvent<int> OnBreak;
+    public UnityEvent OnSpawn;
 }
