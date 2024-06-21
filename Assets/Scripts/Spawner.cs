@@ -1,91 +1,116 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class Spawner : MonoBehaviour
 {
     [SerializeField]
-    private List<GameObject> gameObjects = new List<GameObject>();
-
+    private float speed;
     [SerializeField]
-    private float maxHeight = 10f; // Maximum height for objects
-    [SerializeField]
-    private float minHeight = 5f; // Maximum height for objects
+    private GameObject BeatBoxObj;
 
-    [SerializeField]
-    private float spawnInterval = 1f; // Time interval between spawns
+    public LaneObject[] laneObjects;
 
-    private float timeSinceLastSpawn;
+    public GameEvent Event;
 
-    [SerializeField]
-    private float horizontalDistance;
-    private float gravity = 9.81f;
-    private float initialSpeedX;
 
-    [SerializeField]
-    private float minTorque = 5f; // Minimum torque applied to the object
-    [SerializeField]
-    private float maxTorque = 15f; // Maximum torque applied to the object
+    private Direction previousDirection = Direction.Right;
+    private Lane previousLane = Lane.Lane1;
 
-    // Start is called before the first frame update
-    void Start()
+    private Direction currentDirection = Direction.Right;
+    private Lane currentLane = Lane.Lane1;
+
+    private Transform spawnPoint;
+
+    private void OnEnable()
     {
-        timeSinceLastSpawn = spawnInterval; // Ensure immediate first spawn
+        Event.OnSpawn.AddListener(SpawnBox);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDisable()
     {
-        timeSinceLastSpawn += Time.deltaTime;
-        if (timeSinceLastSpawn >= spawnInterval)
-        {
-            SpawnObject();
-            timeSinceLastSpawn = 0f;
-        }
+        Event.OnSpawn.RemoveListener(SpawnBox);
     }
 
-
-    private void SpawnObject()
+    private void SpawnBox()
     {
-        if (gameObjects.Count == 0) return;
-
-        // Choose a random object to spawn
-        GameObject objectToSpawn = gameObjects[Random.Range(0, gameObjects.Count)];
-
-        // Set the spawn position (constant)
-        Vector3 spawnPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-
-        // Instantiate the object at the spawn position
-        GameObject spawnedObject = Instantiate(objectToSpawn, spawnPosition, Quaternion.identity);
-
-        // Apply an initial upward force to the spawned object
+        currentLane = GetLane();
+        previousLane = currentLane;
+        currentDirection = GetDirection();
+        previousDirection = currentDirection;
+        ChooseSpawnPoint(currentLane, currentDirection);
+        GameObject spawnedObject = Instantiate(BeatBoxObj, spawnPoint.position, Quaternion.identity);
         Rigidbody rb = spawnedObject.GetComponent<Rigidbody>();
         if (rb != null)
         {
-            float height = Random.Range(minHeight, this.maxHeight);
-
-            // Calculate the initial vertical speed to reach the maxHeight
-            float initialSpeedY = Mathf.Sqrt(2 * gravity * height);
-
-            // Calculate the time to reach the maxHeight and back to the spawn height
-            float timeToApex = initialSpeedY / gravity;
-            float totalTime = 2 * timeToApex;
-
-            // Calculate the required initial horizontal speed
-            initialSpeedX = horizontalDistance / totalTime;
-
-            Vector3 initialVelocity = new Vector3(initialSpeedX, initialSpeedY, 0);
-
-            rb.velocity = initialVelocity;
-
-            // Apply a random rotation to the object
-            Vector3 randomTorque = new Vector3(
-                Random.Range(minTorque, maxTorque),
-                Random.Range(minTorque, maxTorque),
-                Random.Range(minTorque, maxTorque)
-            );
-            rb.AddTorque(randomTorque, ForceMode.Impulse);
+            rb.AddForce(currentDirection == Direction.Left ? Vector3.left * speed : Vector3.right * speed, ForceMode.Impulse);
         }
     }
 
+    private void ChooseSpawnPoint(Lane lane, Direction direction)
+    {
+        foreach (LaneObject laneObject in laneObjects)
+        {
+            if (laneObject.laneID == lane)
+            {
+                spawnPoint = direction != Direction.Left ? laneObject.LeftSpawnPos : laneObject.RightSpawnPos;
+                return;
+            }
+        }
+        Debug.LogError("LaneObject not found for lane: " + lane);
+    }
+
+    private Direction GetDirection()
+    {
+        if (previousDirection == Direction.Left)
+        {
+            return Direction.Right;
+        }
+        else
+        {
+            return Direction.Left;
+        }
+    }
+
+    private Lane GetLane()
+    {
+        switch (previousLane)
+        {
+            case Lane.Lane1:
+                return ChooseRandomLane(previousLane);
+            case Lane.Lane2:
+                return ChooseRandomLane(previousLane);
+            case Lane.Lane3:
+                return ChooseRandomLane(previousLane);
+            default:
+                Debug.LogError("Invalid Lane");
+                return Lane.Lane1;
+        }
+    }
+
+    private Lane ChooseRandomLane(Lane current)
+    {
+        Lane newLane;
+        do
+        {
+            newLane = (Lane)Random.Range(0, 3);
+        } while (current == newLane);
+
+        return newLane;
+    }
+
+
 }
+
+public enum Direction
+{
+    Left,
+    Right
+}
+
+public enum Lane
+{
+    Lane1,
+    Lane2,
+    Lane3
+}
+

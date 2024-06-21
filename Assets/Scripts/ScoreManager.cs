@@ -10,7 +10,13 @@ public class ScoreManager : Singleton<ScoreManager>
 
     private void Awake()
     {
-        SetText();  
+        SetText(); 
+        InvokeRepeating(nameof(Spawn), 1, 1);
+    }
+
+    private void Spawn()
+    {
+        Event.OnSpawn.Invoke();
     }
 
     public void AddScore(int amount)
