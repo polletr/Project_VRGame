@@ -22,6 +22,7 @@ public class BreakableObject : MonoBehaviour, ITargetable
     private void Awake()
     {
         Switch(true);
+        Destroy(gameObject,7f);
 
     }
     public void OnTriggerEnter(Collider other)

@@ -1,93 +1,76 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
 public class MusicConductor : MonoBehaviour
 {
-    private AudioSource audioSource;
-    private float[] samples = new float[512];
-    private float[] spectrum = new float[512];
-    private float rmsValue;
-    private float threshold = 0.02f; // Initial threshold
-    public float thresholdMultiplier = 1.5f; // Multiplier to detect stronger beats
+    public float thresholdDB = -3f;
+    [SerializeField]
+    private float cooldownDuration = 1f; // Cooldown duration in seconds
+    private float lastSpawnTimestamp = -Mathf.Infinity; 
 
-    public List<float> beatTimestamps = new List<float>();
-    private int beatIndex = 0;
+    private float timer;
 
-    private bool audioProcessed;
+    [SerializeField]
+    private GameEvent gameEvent;
+
+    [SerializeField] private AudioClip songClip;
+    [SerializeField] private AudioClip beatClip;
+
+    [SerializeField]
+    private AudioSource musicSource;
+    [SerializeField]
+    private AudioSource beatTarget;
 
     private void Start()
     {
-        audioSource = GetComponent<AudioSource>();
-        PreprocessAudio();
+        musicSource.clip = songClip;
+        beatTarget.clip = beatClip;
+        StartCoroutine(SetReadyAfterDelay(3f));
     }
 
     void Update()
     {
-        if (audioProcessed)
-            DetectBeat();
-    }
-
-    void PreprocessAudio()
-    {
-        int numSamples = audioSource.clip.samples;
-        float[] clipSamples = new float[numSamples * audioSource.clip.channels];
-        audioSource.clip.GetData(clipSamples, 0);
-
-        for (int i = 0; i < numSamples; i += samples.Length)
+        if (beatTarget.isPlaying)
         {
-            int length = Mathf.Min(samples.Length, numSamples - i);
-            System.Array.Copy(clipSamples, i, samples, 0, length);
-            AnalyzeAudio();
-            if (rmsValue > threshold)
+            // Calculate playback time
+            float[] spectrumData = new float[1024]; // Example buffer size
+            beatTarget.GetSpectrumData(spectrumData, 0, FFTWindow.Rectangular); // Get audio spectrum data
+
+            float maxAmplitude = 0f;
+
+            // Calculate maximum amplitude in current spectrum data
+            for (int i = 0; i < spectrumData.Length; i++)
             {
-                beatTimestamps.Add(i / (float)audioSource.clip.frequency);
-                threshold = rmsValue * thresholdMultiplier;
+                if (spectrumData[i] > maxAmplitude)
+                {
+                    maxAmplitude = spectrumData[i];
+                }
             }
-            else
+
+            // Convert amplitude to dB
+            float amplitudeDB = 20 * Mathf.Log10(maxAmplitude);
+
+            // Check if amplitude exceeds threshold
+            if (amplitudeDB > thresholdDB && Time.time >= lastSpawnTimestamp + cooldownDuration)
             {
-                threshold *= 0.98f; // Slowly decrease the threshold over time
+                Debug.Log("Amplitude in dB: " + amplitudeDB); // Debug log to check the amplitude value
+                gameEvent.OnSpawn.Invoke();
+                lastSpawnTimestamp = Time.time; // Update the last spawn timestamp
             }
         }
-
-        audioProcessed = true;
-        audioSource.Play();
     }
 
-    void AnalyzeAudio()
+
+    IEnumerator SetReadyAfterDelay(float delay)
     {
-        int i;
-        float sum = 0;
-        for (i = 0; i < samples.Length; i++)
-        {
-            sum += samples[i] * samples[i];
-        }
-        rmsValue = Mathf.Sqrt(sum / samples.Length); // RMS = square root of average
-
-        // Frequency analysis
-        audioSource.GetSpectrumData(spectrum, 0, FFTWindow.BlackmanHarris);
-        float maxV = 0;
-        var maxN = 0;
-        for (i = 0; i < spectrum.Length; i++)
-        {
-            if (!(spectrum[i] > maxV) || !(spectrum[i] > threshold))
-                continue;
-
-            maxV = spectrum[i];
-            maxN = i; // maxN is the index of max
-        }
-        float pitchValue = maxN * 24000 / spectrum.Length; // convert index to frequency
-
-        // Add pitch value influence to RMS
-        rmsValue += pitchValue * 0.001f;
+        yield return new WaitForSeconds(delay);
+        beatTarget.Play();
+        musicSource.Play();
+        Debug.Log("Ready is now true");
     }
 
-    void DetectBeat()
-    {
-        if (beatIndex < beatTimestamps.Count && audioSource.time >= beatTimestamps[beatIndex])
-        {
-            Debug.Log("Spawn");
-            beatIndex++;
-        }
-    }
 }
