@@ -6,7 +6,7 @@ public class Gun : MonoBehaviour
     [SerializeField,Header("Shoot Action")]
     public InputActionReference shoot;
     [SerializeField]
-    private float _fireRate = 0.5f;
+    private float _fireRate = 0.1f;
 
     [SerializeField,Header("Bullet Action")]
     public GameObject bulletPrefab;
