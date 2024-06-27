@@ -9,6 +9,9 @@ public class BreakableObject : MonoBehaviour, ITargetable
     [SerializeField]
     private Transform explodePoint;
 
+    [SerializeField] 
+    private DamagePopUp pointPopUp;
+
     [SerializeField]
     private int baseScoreValue = 100;
     private int scoreValue;
@@ -72,7 +75,10 @@ public class BreakableObject : MonoBehaviour, ITargetable
 
     public void OnHit()
     {
+        Instantiate(pointPopUp, transform.position, Quaternion.identity);
+
         Event.OnBreak.Invoke(scoreValue);
+        pointPopUp.SetDamageText(scoreValue);
         Debug.Log("collided");
         Switch(false);
         Destroy(gameObject, 3f);

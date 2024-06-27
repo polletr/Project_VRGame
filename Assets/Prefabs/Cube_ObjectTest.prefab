@@ -165,6 +165,7 @@ MonoBehaviour:
   FullObj: {fileID: 540295744313247696}
   ShatterObj: {fileID: 2620704869300705395}
   explodePoint: {fileID: 4980322750027224033}
+  pointPopUp: {fileID: 6401124870279345557, guid: 2d59bdd805eb04d44b116bc882a6c6f2, type: 3}
   baseScoreValue: 100
   Event: {fileID: 11400000, guid: ca9cd37548ba1174aacb9e50199d876d, type: 2}
   startColor: {r: 0, g: 1, b: 0, a: 1}
