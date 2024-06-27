@@ -75,7 +75,7 @@ public class BreakableObject : MonoBehaviour, ITargetable
 
     public void OnHit()
     {
-        Instantiate(pointPopUp, transform.position, Quaternion.identity);
+        Instantiate(pointPopUp, transform.position + new Vector3(0,0,-4f), Quaternion.identity);
 
         Event.OnBreak.Invoke(scoreValue);
         pointPopUp.SetDamageText(scoreValue);
