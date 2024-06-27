@@ -19,19 +19,18 @@ public class Gun : MonoBehaviour
     private float _maxAimDistance = 100f;
 
     float _timer;
-    bool isShooting;
+
+    void OnEnable()
+    {
+        shoot.action.performed += ctx => Shoot();
+    }
+    private void OnDisable()
+    {
+        shoot.action.performed -= ctx => Shoot();
+    }
     void Update()
     {
-        isShooting = (shoot.action.ReadValue<float>() == 1);
-        _timer += Time.deltaTime;
-        if (isShooting && _timer >= _fireRate)
-        {
-            Shoot();
-            _timer = 0;
-        }
-
         UpdateAimLine();
-
     }
 
     private void Shoot()
