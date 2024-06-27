@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43f6001f6c978a3439712b56c112cc3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 8
   BeatBoxObj: {fileID: 1984216778623581739, guid: e2a3f1f3a572ac444a79da740736b1f3, type: 3}
   laneObjects:
   - {fileID: 1854691218}
