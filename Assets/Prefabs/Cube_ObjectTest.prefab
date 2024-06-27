@@ -165,8 +165,10 @@ MonoBehaviour:
   FullObj: {fileID: 540295744313247696}
   ShatterObj: {fileID: 2620704869300705395}
   explodePoint: {fileID: 4980322750027224033}
-  scoreValue: 1
+  baseScoreValue: 100
   Event: {fileID: 11400000, guid: ca9cd37548ba1174aacb9e50199d876d, type: 2}
+  startColor: {r: 0, g: 1, b: 0, a: 1}
+  endColor: {r: 1, g: 0, b: 0, a: 1}
   force: 500
   shardPeices:
   - {fileID: 7795461896308188094}
@@ -177,6 +179,7 @@ MonoBehaviour:
   - {fileID: 4945892370142057355}
   - {fileID: 1459047886587853754}
   - {fileID: 6630222926976643434}
+  maxTimeToShoot: 2
 --- !u!135 &4574878368504775420
 SphereCollider:
   m_ObjectHideFlags: 0
