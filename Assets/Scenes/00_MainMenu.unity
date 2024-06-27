@@ -212,6 +212,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5363976254163901529, guid: 137dcbe79e7374d4582e7ce9883001e2, type: 3}
+      propertyPath: Event
+      value: 
+      objectReference: {fileID: 11400000, guid: ca9cd37548ba1174aacb9e50199d876d, type: 2}
+    - target: {fileID: 5363976254163901529, guid: 137dcbe79e7374d4582e7ce9883001e2, type: 3}
       propertyPath: OnBreak.m_PersistentCalls.m_Calls.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -747,6 +751,22 @@ PrefabInstance:
     - target: {fileID: 7873184977108000993, guid: 895f6f3c2d334633b5800312285058d2, type: 3}
       propertyPath: m_CameraYOffset
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9014170783809206330, guid: 895f6f3c2d334633b5800312285058d2, type: 3}
+      propertyPath: m_BackGroundColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9014170783809206330, guid: 895f6f3c2d334633b5800312285058d2, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9014170783809206330, guid: 895f6f3c2d334633b5800312285058d2, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9014170783809206330, guid: 895f6f3c2d334633b5800312285058d2, type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1924,6 +1944,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5363976254163901529, guid: 137dcbe79e7374d4582e7ce9883001e2, type: 3}
+      propertyPath: Event
+      value: 
+      objectReference: {fileID: 11400000, guid: ca9cd37548ba1174aacb9e50199d876d, type: 2}
+    - target: {fileID: 5363976254163901529, guid: 137dcbe79e7374d4582e7ce9883001e2, type: 3}
       propertyPath: OnBreak.m_PersistentCalls.m_Calls.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -2153,6 +2177,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5363976254163901529, guid: 137dcbe79e7374d4582e7ce9883001e2, type: 3}
+      propertyPath: Event
+      value: 
+      objectReference: {fileID: 11400000, guid: ca9cd37548ba1174aacb9e50199d876d, type: 2}
     - target: {fileID: 5363976254163901529, guid: 137dcbe79e7374d4582e7ce9883001e2, type: 3}
       propertyPath: OnBreak.m_PersistentCalls.m_Calls.Array.size
       value: 2

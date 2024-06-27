@@ -39,15 +39,16 @@ public class MainMenu : MonoBehaviour
 
     public void QuitGame()
     {
-        if (Application.isEditor)
+        Application.Quit();
+
+/*        if (Application.isEditor)
         {
             UnityEditor.EditorApplication.isPlaying = false;
         }
         else
         {
-            Application.Quit();
         }
-    }
+*/    }
 
     public void OnToggleCredits()
     {
