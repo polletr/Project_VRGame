@@ -14,6 +14,8 @@ public class MainMenu : MonoBehaviour
     public GameObject creditButton;
     public Transform creditButtonPos;
 
+    public float delay = 5f;
+
 
     private void Awake()
     {
@@ -22,40 +24,35 @@ public class MainMenu : MonoBehaviour
         RespawnCreditsButton();
     }
 
-    public void PlayGame()
-    {
-       StartCoroutine(LoadGame()); 
-    }
+    public void PlayGame() => StartCoroutine(PlayDelay());
 
-    public IEnumerator LoadGame()
+    public void QuitGame() => StartCoroutine(QuitDelay());
+
+    public IEnumerator PlayDelay()
     {
         while (true)
         {
-            yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(delay);
             SceneManager.LoadScene(1);
         }
     }
-
-
-    public void QuitGame()
+    public IEnumerator QuitDelay()
     {
-        Application.Quit();
-
-/*        if (Application.isEditor)
+        while (true)
         {
+            yield return new WaitForSeconds(delay);
+            Application.Quit();
+#if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
+#endif      
         }
-        else
-        {
-        }
-*/    }
+    }
 
     public void OnToggleCredits()
     {
         creditsMenu.SetActive(!creditsMenu.activeSelf);
         mainMenu.SetActive(!mainMenu.activeSelf);
     }
-
 
     public void RespawnCreditsBack()
     {

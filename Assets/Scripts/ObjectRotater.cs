@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class ObjectRotater : MonoBehaviour
 {
-    public bool canRotate;
     [SerializeField] private float speed;
-    Rigidbody rb;
-    // Start is called before the first frame update
+    private bool canRotate;
+    private Rigidbody rb;
+
     void Start()
     {
+        canRotate = true;
         rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (canRotate)

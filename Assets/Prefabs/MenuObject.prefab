@@ -96,7 +96,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5163568483972017918}
   - component: {fileID: -5952604551824202732}
-  - component: {fileID: 5363976254163901529}
+  - component: {fileID: 6012679638426573940}
   - component: {fileID: 1924301224116943967}
   - component: {fileID: 1513210107763127310}
   m_Layer: 3
@@ -116,7 +116,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1.4397, y: 1.4397, z: 1.4397}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2334838947571817645}
@@ -151,7 +151,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &5363976254163901529
+--- !u!114 &6012679638426573940
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -160,14 +160,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1984216778623581739}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6363750cfdcb1a445889420b74b4d828, type: 3}
+  m_Script: {fileID: 11500000, guid: ac7a5e0ddbc133b4f8b06203714960d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   FullObj: {fileID: 540295744313247696}
   ShatterObj: {fileID: 2620704869300705395}
   explodePoint: {fileID: 5438696942335382504}
-  scoreValue: 1
-  Event: {fileID: 11400000, guid: ca9cd37548ba1174aacb9e50199d876d, type: 2}
   force: 500
   shardPeices:
   - {fileID: 7795461896308188094}
@@ -178,6 +176,9 @@ MonoBehaviour:
   - {fileID: 4945892370142057355}
   - {fileID: 1459047886587853754}
   - {fileID: 6630222926976643434}
+  OnHitEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1924301224116943967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,7 +191,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39ef76db932462345b869fc45ce0d74a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canRotate: 1
   speed: 1
 --- !u!65 &1513210107763127310
 BoxCollider:
