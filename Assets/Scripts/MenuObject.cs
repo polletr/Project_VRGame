@@ -20,15 +20,18 @@ public class MenuObject : MonoBehaviour , ITargetable
 
     private ObjectRotater objRotater;
 
+    private Collider col;
+
     private void Awake()
     {
+        col = GetComponent<Collider>();
         objRotater = GetComponent<ObjectRotater>();
         Switch(true);
     }
 
     public void OnHit()
     {
-
+       col.enabled = false;
         objRotater.ToggleRotation();
         Debug.Log("collided");
         Switch(false);

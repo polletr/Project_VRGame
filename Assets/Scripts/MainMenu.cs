@@ -16,9 +16,15 @@ public class MainMenu : MonoBehaviour
 
     public float delay = 5f;
 
+    public AudioClip BGMenuMusic;
+
+    [Header("Game Event")]
+    public GameEvent Event;
+
 
     private void Awake()
     {
+        Event.PlayClip?.Invoke(BGMenuMusic);
         mainMenu.SetActive(true);
         creditsMenu.SetActive(false);
         RespawnCreditsButton();
