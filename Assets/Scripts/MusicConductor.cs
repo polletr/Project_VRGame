@@ -57,7 +57,6 @@ public class MusicConductor : MonoBehaviour
             // Check if amplitude exceeds threshold
             if (amplitudeDB > thresholdDB && Time.time >= lastSpawnTimestamp + cooldownDuration)
             {
-                Debug.Log("Amplitude in dB: " + amplitudeDB); // Debug log to check the amplitude value
                 gameEvent.OnSpawn.Invoke();
                 lastSpawnTimestamp = Time.time; // Update the last spawn timestamp
             }
@@ -70,7 +69,6 @@ public class MusicConductor : MonoBehaviour
         yield return new WaitForSeconds(delay);
         beatTarget.Play();
         musicSource.Play();
-        Debug.Log("Ready is now true");
     }
 
 }

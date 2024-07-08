@@ -1,80 +1,64 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
 public class AudioManager : Singleton<AudioManager>
 {
-
-
     [Header("Mixer")]
-    [SerializeField] private AudioMixer Mixer;
+    [SerializeField] private AudioMixer mixer;
 
     [Header("Mixer Groups")]
-    [SerializeField] private AudioMixerGroup MasterG;
-    [SerializeField] private AudioMixerGroup BgMusicG;
-    [SerializeField] private AudioMixerGroup SfxG;
+    [SerializeField] private AudioMixerGroup masterGroup;
+    [SerializeField] private AudioMixerGroup bgMusicGroup;
+    [SerializeField] private AudioMixerGroup sfxGroup;
 
     [Header("Game Event")]
-    public GameEvent Event;
+    public GameEvent gameEvent;
 
-    private List<AudioSource> _allAudioSources = new();
-    private List<AudioSource> _availableAudioSources = new();
+    private List<AudioSource> _audioSources = new();
 
     private void Awake()
     {
         foreach (AudioSource source in GetComponentsInChildren<AudioSource>())
         {
-            _allAudioSources.Add(source);
-            _availableAudioSources.Add(source);
+            _audioSources.Add(source);
         }
     }
 
-    private void PlayBGMusic(AudioClip clip)
+    private void PlayAudio(AudioClip clip, bool isBgMusic)
     {
         AudioSource audioSource = GetAvailableAudioSource();
+
+        if (isBgMusic) StopAllAudio();
+
         if (audioSource)
         {
-            audioSource.outputAudioMixerGroup = BgMusicG;
-            audioSource.loop = true;
+            audioSource.outputAudioMixerGroup = isBgMusic ? bgMusicGroup : sfxGroup;
+            audioSource.loop = isBgMusic;
             audioSource.clip = clip;
             audioSource.Play();
         }
         else
-            Debug.LogWarning("No available audio sources");
-    }
-
-    private void PlayClip(AudioClip clip)
-    {
-        AudioSource audioSource = GetAvailableAudioSource();
-        if (audioSource)
         {
-            _availableAudioSources.Remove(audioSource);
-            audioSource.outputAudioMixerGroup = SfxG;
-            audioSource.PlayOneShot(clip);
-            audioSource.outputAudioMixerGroup = MasterG;
-            _availableAudioSources.Add(audioSource);
-        }
-        else
             Debug.LogWarning("No available audio sources");
+        }
     }
 
     private AudioSource GetAvailableAudioSource()
     {
-        foreach (AudioSource audioSource in _availableAudioSources)
+        foreach (AudioSource audioSource in _audioSources)
         {
             if (!audioSource.isPlaying)
             {
-                _availableAudioSources.Remove(audioSource);
                 return audioSource;
             }
         }
         return null;
     }
 
-    private void StopAllAudio()
+    public void StopAllAudio()
     {
-        foreach (AudioSource audioSource in _allAudioSources)
+        foreach (AudioSource audioSource in _audioSources)
         {
             audioSource.Stop();
         }
@@ -82,14 +66,13 @@ public class AudioManager : Singleton<AudioManager>
 
     private void OnEnable()
     {
-        Event.PlayBGMusic.AddListener(PlayBGMusic);
-        Event.PlayClip.AddListener(PlayClip);
-    
+        gameEvent.PlayBGMusic.AddListener((clip) => PlayAudio(clip, true));
+        gameEvent.PlayClip.AddListener((clip) => PlayAudio(clip, false));
     }
 
     private void OnDisable()
     {
-        Event.PlayBGMusic.RemoveListener(PlayBGMusic);
-        Event.PlayClip.RemoveListener(PlayClip);
+        gameEvent.PlayBGMusic.RemoveListener((clip) => PlayAudio(clip, true));
+        gameEvent.PlayClip.RemoveListener((clip) => PlayAudio(clip, false));
     }
 }

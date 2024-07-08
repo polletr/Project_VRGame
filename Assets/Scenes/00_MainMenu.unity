@@ -1478,7 +1478,6 @@ GameObject:
   - component: {fileID: 1004911864}
   - component: {fileID: 1004911863}
   - component: {fileID: 1004911862}
-  - component: {fileID: 1004911861}
   - component: {fileID: 1004911865}
   m_Layer: 5
   m_Name: Canvas
@@ -1487,23 +1486,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1004911861
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1004911860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!114 &1004911862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2173,7 +2155,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1819934938
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2541,25 +2523,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 561947926039617489, guid: 7b0cd201a283fd049908a2bef2e8f669, type: 3}
-      propertyPath: audioSources.Array.size
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3003241091520956159, guid: 7b0cd201a283fd049908a2bef2e8f669, type: 3}
       propertyPath: m_Name
       value: '[AudioManager]'
       objectReference: {fileID: 0}
     - target: {fileID: 3711493788793551953, guid: 7b0cd201a283fd049908a2bef2e8f669, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 17.41845
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3711493788793551953, guid: 7b0cd201a283fd049908a2bef2e8f669, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.6583567
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3711493788793551953, guid: 7b0cd201a283fd049908a2bef2e8f669, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 20.791962
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3711493788793551953, guid: 7b0cd201a283fd049908a2bef2e8f669, type: 3}
       propertyPath: m_LocalRotation.w

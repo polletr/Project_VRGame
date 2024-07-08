@@ -49,17 +49,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eaaf0e5a7e4de14eb6b423659151acc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSources:
-  - {fileID: 3866816676690937418}
-  - {fileID: 8638628605239965159}
-  - {fileID: 6939138923469630612}
-  - {fileID: 1431489510885520440}
-  - {fileID: 504070079755025142}
-  Mixer: {fileID: 24100000, guid: c081c59d76d5d3145b09ab5cac8e9bab, type: 2}
-  MasterG: {fileID: 24300002, guid: c081c59d76d5d3145b09ab5cac8e9bab, type: 2}
-  BgMusicG: {fileID: -3445952040714450445, guid: c081c59d76d5d3145b09ab5cac8e9bab, type: 2}
-  SfxG: {fileID: 6632769877928023237, guid: c081c59d76d5d3145b09ab5cac8e9bab, type: 2}
-  Event: {fileID: 11400000, guid: ca9cd37548ba1174aacb9e50199d876d, type: 2}
+  mixer: {fileID: 24100000, guid: c081c59d76d5d3145b09ab5cac8e9bab, type: 2}
+  masterGroup: {fileID: 24300002, guid: c081c59d76d5d3145b09ab5cac8e9bab, type: 2}
+  bgMusicGroup: {fileID: -3445952040714450445, guid: c081c59d76d5d3145b09ab5cac8e9bab, type: 2}
+  sfxGroup: {fileID: 6632769877928023237, guid: c081c59d76d5d3145b09ab5cac8e9bab, type: 2}
+  gameEvent: {fileID: 11400000, guid: ca9cd37548ba1174aacb9e50199d876d, type: 2}
 --- !u!1 &3509356276847155156
 GameObject:
   m_ObjectHideFlags: 0
