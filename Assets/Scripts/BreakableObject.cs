@@ -31,6 +31,12 @@ public class BreakableObject : MonoBehaviour, ITargetable
     [SerializeField]
     private float maxTimeToShoot = 1f;
 
+    // Sine wave parameters
+    [SerializeField]
+    private float amplitude = 1f; // Amplitude of the sine wave
+    private float frequency = 1f; // Frequency of the sine wave
+    private float sineWaveOffset = 0f; // Offset for the sine wave calculation
+
 
     private void Awake()
     {
@@ -41,6 +47,9 @@ public class BreakableObject : MonoBehaviour, ITargetable
             objMaterial = objRenderer.material;
             objMaterial.EnableKeyword("_EMISSION"); // Enable emission
         }
+
+        frequency = Random.Range(2f, 10f);
+        amplitude = Random.Range(10f, 20f);
         Switch(true);
         Destroy(gameObject, 7f);
         
@@ -48,6 +57,14 @@ public class BreakableObject : MonoBehaviour, ITargetable
 
     void Update()
     {
+        // Update sine wave offset
+        sineWaveOffset += Time.deltaTime * frequency;
+
+        // Move the object in a sine wave pattern
+        Vector3 position = transform.position;
+        position.y += Mathf.Sin(sineWaveOffset) * amplitude * Time.deltaTime;
+        transform.position = position;
+
         timerToShoot += Time.deltaTime;
         float t = timerToShoot / maxTimeToShoot;
         if (t >= 1f)
