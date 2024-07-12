@@ -1,14 +1,14 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Utilities;
 
 public class Gun : MonoBehaviour
 {
-    [SerializeField,Header("Shoot Action")]
+    [SerializeField, Header("Shoot Action")]
     public InputActionReference shoot;
-    [SerializeField]
-    private float _fireRate = 0.1f;
 
-    [SerializeField,Header("Bullet Action")]
+    [SerializeField, Header("Bullet Action")]
     public GameObject bulletPrefab;
     [SerializeField]
     private Transform _bulletSpawnPoint;
@@ -17,6 +17,15 @@ public class Gun : MonoBehaviour
     private LineRenderer _lineRenderer;
     [SerializeField]
     private float _maxAimDistance = 100f;
+
+    [SerializeField]
+    private Animator animator;
+    [SerializeField]
+    private float flashRate = 0.3f;
+    [SerializeField]
+    private GameObject flash;
+
+    int shootAnimation = Animator.StringToHash("Shoot");
 
     float _timer;
 
@@ -35,6 +44,8 @@ public class Gun : MonoBehaviour
 
     private void Shoot()
     {
+        StartCoroutine(FlashShoot());
+        animator.Play(shootAnimation);
         Ray ray = new Ray(_bulletSpawnPoint.position, _bulletSpawnPoint.forward);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, _maxAimDistance))
@@ -46,7 +57,20 @@ public class Gun : MonoBehaviour
                 Debug.Log("Shoot");
             }
         }
+    }
 
+    private IEnumerator FlashShoot()
+    {
+        CountdownTimer timer = new CountdownTimer(flashRate);
+        timer.Start();
+        flash.SetActive(true);
+
+        while (timer.IsRunning)
+        {
+            timer.Tick(Time.deltaTime);
+            yield return null;
+        }
+        flash.SetActive(false);
     }
 
     private void UpdateAimLine()

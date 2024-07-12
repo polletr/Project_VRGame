@@ -36,7 +36,6 @@ public class BreakableObject : MonoBehaviour, ITargetable
     [SerializeField]
     private float timeToShoot = 1f;
 
-
     // Sine wave parameters
     [SerializeField]
     private float amplitude = 1f; // Amplitude of the sine wave
