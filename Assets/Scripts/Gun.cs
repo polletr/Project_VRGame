@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 using Utilities;
 
 public class Gun : MonoBehaviour
@@ -15,8 +16,7 @@ public class Gun : MonoBehaviour
 
     [SerializeField, Header("Aim Settings")]
     private LineRenderer _lineRenderer;
-    [SerializeField]
-    private float _maxAimDistance = 100f;
+    private float _maxAimDistance = 1000f;
 
     [SerializeField]
     private Animator animator;
@@ -54,7 +54,6 @@ public class Gun : MonoBehaviour
             if (target != null)
             {
                 target.OnHit();
-                Debug.Log("Shoot");
             }
         }
     }

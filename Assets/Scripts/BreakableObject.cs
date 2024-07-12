@@ -33,6 +33,8 @@ public class BreakableObject : MonoBehaviour, ITargetable
     [SerializeField]
     private GameObject[] shardPeices;
 
+    private float normalizedTime = 0f; 
+
     [SerializeField]
     private float timeToShoot = 1f;
 
@@ -117,15 +119,25 @@ public class BreakableObject : MonoBehaviour, ITargetable
         objMaterial.SetColor("_EmissionColor", greenColor);
         isChanging = true;
         float t = 0;
+
+        while (t < 0.5f)
+        {
+            normalizedTime = 0f;
+            t += Time.deltaTime; 
+            yield return null;
+        }
+        t = 0;
         while (t < timeToShoot && isChanging)
         {
             t += Time.deltaTime;
-            float normalizedTime = t / timeToShoot;
+            normalizedTime = t / timeToShoot;
+
             scoreValue = (int)(baseScoreValue * (1 - normalizedTime));
 
             emissionColor = Color.Lerp(greenColor, redColor, normalizedTime);
             objMaterial.color = emissionColor;
             objMaterial.SetColor("_EmissionColor", emissionColor);
+
             yield return null;
         }
         scoreValue = redScoreValue;
