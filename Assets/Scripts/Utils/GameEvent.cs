@@ -9,4 +9,9 @@ public class GameEvent : ScriptableObject
 
     public UnityEvent<AudioClip> PlayClip;
     public UnityEvent<AudioClip> PlayBGMusic;
+
+    public void InvokeBeatEvent()
+    {
+        OnBeat.Invoke();
+    }
 }

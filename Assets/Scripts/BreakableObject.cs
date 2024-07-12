@@ -61,7 +61,7 @@ public class BreakableObject : MonoBehaviour, ITargetable
         frequency = Random.Range(2f, 10f);
         amplitude = Random.Range(10f, 20f);
         Switch(true);
-        Destroy(gameObject, 10f);
+        Destroy(gameObject, 14f);
 
     }
 
