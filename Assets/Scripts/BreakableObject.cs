@@ -36,6 +36,9 @@ public class BreakableObject : MonoBehaviour, ITargetable
     [SerializeField]
     private float timeToShoot = 1f;
 
+    private bool isChanging = false;
+    [SerializeField]
+    private int redScoreValue;
     // Sine wave parameters
     [SerializeField]
     private float amplitude = 1f; // Amplitude of the sine wave
@@ -57,10 +60,11 @@ public class BreakableObject : MonoBehaviour, ITargetable
             objMaterial.SetColor("_EmissionColor", redColor);
         }
 
-        frequency = Random.Range(2f, 10f);
+        frequency = Random.Range(2f, 5f);
         amplitude = Random.Range(10f, 20f);
+        scoreValue = redScoreValue;
         Switch(true);
-        Destroy(gameObject, 14f);
+        Destroy(gameObject, 30f);
 
     }
 
@@ -85,7 +89,6 @@ public class BreakableObject : MonoBehaviour, ITargetable
         Event.OnBreak.Invoke(scoreValue);
         pointPopUp.SetDamageText(scoreValue);
         canMove = false;
-        Debug.Log("collided");
         Switch(false);
         Destroy(gameObject, 3f);
 
@@ -109,11 +112,9 @@ public class BreakableObject : MonoBehaviour, ITargetable
 
         objMaterial.color = greenColor;
         objMaterial.SetColor("_EmissionColor", greenColor);
-
-
-
+        isChanging = true;
         float t = 0;
-        while (t < timeToShoot)
+        while (t < timeToShoot && isChanging)
         {
             t += Time.deltaTime;
             float normalizedTime = t / timeToShoot;
@@ -123,6 +124,8 @@ public class BreakableObject : MonoBehaviour, ITargetable
             objMaterial.SetColor("_EmissionColor", emissionColor);
             yield return null;
         }
+        scoreValue = redScoreValue;
+
     }
 
     private void ChangeColorToGreen()
@@ -132,6 +135,8 @@ public class BreakableObject : MonoBehaviour, ITargetable
           ScoreManager.Instance.maxPointsInSong += baseScoreValue;
           pointsAdded = true;
         }
+        StopAllCoroutines();
+        isChanging = false;
         StartCoroutine(ChangeColor());
     }
 
