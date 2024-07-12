@@ -3,7 +3,7 @@ using UnityEngine;
 public class ScoreManager : Singleton<ScoreManager>
 {
     [Header("Score Grades")]
-    public int maxPointsInSong = 1000;
+    public int maxPointsInSong = 0;
     [Header("UI")]
     [SerializeField] private TMPro.TextMeshProUGUI scoreText;
     [SerializeField] private TMPro.TextMeshProUGUI gradeText;
@@ -47,12 +47,6 @@ public class ScoreManager : Singleton<ScoreManager>
 
     public string GetGrade(int maxPoints)
     {
-        if (maxPoints <= 0)
-        {
-            Debug.LogError("Max points must be greater than zero!");
-            return "Error";
-        }
-
         int pointsPerGrade = maxPoints / gradeList.Length;
 
         for (int i = 0; i < gradeList.Length; i++)
@@ -74,12 +68,8 @@ public class ScoreManager : Singleton<ScoreManager>
         return "F";
     }
 
-
-
-    private void Update()
+    public void OnBeatEvent()
     {
-           Debug.Log("Score is: " + GetGrade(maxPointsInSong));
+        Event.OnBeat.Invoke();
     }
-
-
 }

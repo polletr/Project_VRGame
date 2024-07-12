@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Anchor
   - Objects
+  - AABox
   layers:
   - Default
   - TransparentFX
@@ -13,7 +14,7 @@ TagManager:
   - Objects
   - Water
   - UI
-  - 
+  - AABox
   - 
   - 
   - 

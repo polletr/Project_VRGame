@@ -35,9 +35,9 @@ public class Gun : MonoBehaviour
 
     private void Shoot()
     {
+        ScoreManager.Instance.OnBeatEvent();
         Ray ray = new Ray(_bulletSpawnPoint.position, _bulletSpawnPoint.forward);
         RaycastHit hit;
-
         if (Physics.Raycast(ray, out hit, _maxAimDistance))
         {
             ITargetable target = hit.collider.GetComponent<ITargetable>();
@@ -45,7 +45,6 @@ public class Gun : MonoBehaviour
             {
                 target.OnHit();
                 Debug.Log("Shoot");
-
             }
         }
 
