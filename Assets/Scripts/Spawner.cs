@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utilities;
 public class Spawner : MonoBehaviour
 {
     [SerializeField]
@@ -9,8 +10,12 @@ public class Spawner : MonoBehaviour
     private GameObject BeatBoxObj;
 
     public LaneObject[] laneObjects;
+    [Header("Spawner")]
+    [SerializeField] private float spawnInterval = 1.0f;
 
     public GameEvent Event;
+
+    private CountdownTimer spawnTimer;
 
 
     private Direction previousDirection = Direction.Right;
@@ -21,14 +26,22 @@ public class Spawner : MonoBehaviour
 
     private Transform spawnPoint;
 
-    private void OnEnable()
+ 
+    private void Awake()
     {
         Event.OnSpawn.AddListener(SpawnBox);
+        spawnTimer = new CountdownTimer(spawnInterval);
+        spawnTimer.Start();
+        spawnTimer.OnTimerStop += SpawnBox;
+        spawnTimer.OnTimerStop += () => spawnTimer.Start();
+
     }
 
-    private void OnDisable()
+
+    private void Update()
     {
         Event.OnSpawn.RemoveListener(SpawnBox);
+        spawnTimer.Tick(Time.deltaTime);
     }
 
     private void SpawnBox()
