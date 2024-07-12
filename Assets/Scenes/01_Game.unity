@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.007783361, g: 0.062289447, b: 0.19571511, a: 1}
+  m_IndirectSpecularColor: {r: 0.0076468047, g: 0.06234654, b: 0.19625503, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -724,7 +724,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43f6001f6c978a3439712b56c112cc3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 7
   BeatBoxObj: {fileID: 1984216778623581739, guid: e2a3f1f3a572ac444a79da740736b1f3, type: 3}
   laneObjects:
   - {fileID: 1854691218}
@@ -3537,7 +3537,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   volume: {fileID: 1384437420}
   bloomIntensityMin: 4
-  bloomIntensityMax: 25
+  bloomIntensityMax: 50
   bloomTime: 1
   Event: {fileID: 11400000, guid: ca9cd37548ba1174aacb9e50199d876d, type: 2}
 --- !u!4 &651435973
@@ -7508,7 +7508,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9092465180959632900, guid: 883f5c9d15305ad41a8b7683505a853b, type: 3}
       propertyPath: m_LocalScale.x
-      value: 200
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 9092465180959632900, guid: 883f5c9d15305ad41a8b7683505a853b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8697,7 +8697,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 30, z: 10}
+  m_LocalScale: {x: 60, y: 30, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 164793958}
@@ -9633,7 +9633,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9092465180959632900, guid: 883f5c9d15305ad41a8b7683505a853b, type: 3}
       propertyPath: m_LocalScale.x
-      value: 200
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 9092465180959632900, guid: 883f5c9d15305ad41a8b7683505a853b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11317,7 +11317,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9092465180959632900, guid: 883f5c9d15305ad41a8b7683505a853b, type: 3}
       propertyPath: m_LocalScale.x
-      value: 200
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 9092465180959632900, guid: 883f5c9d15305ad41a8b7683505a853b, type: 3}
       propertyPath: m_LocalPosition.x
