@@ -84,6 +84,9 @@ public class BreakableObject : MonoBehaviour, ITargetable
 
     public void OnHit()
     {
+        StopAllCoroutines();
+        Event.OnBeat.RemoveListener(ChangeColorToGreen);
+
         Instantiate(pointPopUp, transform.position + new Vector3(0, 0, -4f), Quaternion.identity);
         objCollider.enabled = false;
         Event.OnBreak.Invoke(scoreValue);
@@ -119,6 +122,7 @@ public class BreakableObject : MonoBehaviour, ITargetable
             t += Time.deltaTime;
             float normalizedTime = t / timeToShoot;
             scoreValue = (int)(baseScoreValue * (1 - normalizedTime));
+
             emissionColor = Color.Lerp(greenColor, redColor, normalizedTime);
             objMaterial.color = emissionColor;
             objMaterial.SetColor("_EmissionColor", emissionColor);
