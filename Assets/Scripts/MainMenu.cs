@@ -4,15 +4,23 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    [Header("Menus")]
+    [SerializeField] 
+    private GameObject mainMenu;
+    [SerializeField] 
+    private GameObject creditsMenu;
 
-    public GameObject creditsMenu;
-    public GameObject mainMenu;
+    [Header("CreditsButtons")]
+    [SerializeField] 
+    private GameObject creditsBack;
+    [SerializeField] 
+    private GameObject creditButton;
 
-    public GameObject creditsBack;
-    public Transform creditsBackPos;
-
-    public GameObject creditButton;
-    public Transform creditButtonPos;
+    [Header("CreditsPositions")]
+    [SerializeField]
+    private Transform creditsBackPos;
+    [SerializeField]
+    private Transform creditButtonPos;
 
     public float delay = 5f;
 
@@ -21,17 +29,13 @@ public class MainMenu : MonoBehaviour
     [Header("Game Event")]
     public GameEvent Event;
 
-
     private void Awake()
     {
         Event.PlayClip?.Invoke(BGMenuMusic);
-        mainMenu.SetActive(true);
         creditsMenu.SetActive(false);
-        RespawnCreditsButton();
     }
 
     public void PlayGame() => StartCoroutine(PlayDelay());
-
     public void QuitGame() => StartCoroutine(QuitDelay());
 
     public IEnumerator PlayDelay()
@@ -54,6 +58,12 @@ public class MainMenu : MonoBehaviour
         }
     }
 
+    private void DisableScreen()
+    {
+        mainMenu.SetActive(false);
+        creditsMenu.SetActive(false);
+    }
+
     public void OnToggleCredits()
     {
         creditsMenu.SetActive(!creditsMenu.activeSelf);
@@ -62,13 +72,13 @@ public class MainMenu : MonoBehaviour
 
     public void RespawnCreditsBack()
     {
-        GameObject obj = Instantiate(creditsBack, creditsBackPos.position, Quaternion.identity);
+        GameObject obj = Instantiate(creditsBack, creditsBackPos.position, new Quaternion(0, 180, 0, 0));
         obj.SetActive(true);
 
     }
     public void RespawnCreditsButton()
     {
-        GameObject obj = Instantiate(creditButton, creditButtonPos.position, Quaternion.identity);
+        GameObject obj = Instantiate(creditButton, creditButtonPos.position, new Quaternion(0, 180, 0, 0));
         obj.SetActive(true);
     }
 

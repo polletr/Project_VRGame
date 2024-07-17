@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-[RequireComponent(typeof(ObjectRotater))]
 public class MenuObject : MonoBehaviour , ITargetable
 {
     [SerializeField]
@@ -17,23 +16,17 @@ public class MenuObject : MonoBehaviour , ITargetable
     private GameObject[] shardPeices;
 
      public UnityEvent OnHitEvent;
-
-    private ObjectRotater objRotater;
-
     private Collider col;
 
     private void Awake()
     {
         col = GetComponent<Collider>();
-        objRotater = GetComponent<ObjectRotater>();
         Switch(true);
     }
 
     public void OnHit()
     {
        col.enabled = false;
-        objRotater.ToggleRotation();
-        Debug.Log("collided");
         Switch(false);
         Destroy(gameObject, 3f);
 
