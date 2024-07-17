@@ -3,11 +3,13 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using Utilities;
-
+using UnityEngine.XR.Interaction.Toolkit;
+[RequireComponent(typeof(LineRenderer), typeof(HapticFeedback))]
 public class Gun : MonoBehaviour
 {
     [SerializeField, Header("Shoot Action")]
     public InputActionReference shoot;
+    public XRBaseController controller;
 
     [SerializeField, Header("Bullet Action")]
     public GameObject bulletPrefab;
@@ -25,9 +27,14 @@ public class Gun : MonoBehaviour
     [SerializeField]
     private GameObject flash;
 
+
+    private HapticFeedback hapticFeedback;
+
     int shootAnimation = Animator.StringToHash("Shoot");
 
     float _timer;
+
+    private void Awake() => hapticFeedback = GetComponent<HapticFeedback>();
 
     void OnEnable()
     {
@@ -46,6 +53,7 @@ public class Gun : MonoBehaviour
     {
         StartCoroutine(FlashShoot());
         animator.Play(shootAnimation);
+        hapticFeedback.OnTriggerHaptic(controller);
         Ray ray = new Ray(_bulletSpawnPoint.position, _bulletSpawnPoint.forward);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, _maxAimDistance))
