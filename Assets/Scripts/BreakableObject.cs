@@ -86,9 +86,10 @@ public class BreakableObject : MonoBehaviour, ITargetable
 
     public void OnHit()
     {
-        StopAllCoroutines();
         Event.OnBeat.RemoveListener(ChangeColorToGreen);
 
+        StopAllCoroutines();
+        Debug.Log(scoreValue + "On Destroy");
         Instantiate(pointPopUp, transform.position + new Vector3(0, 0, -4f), Quaternion.identity);
         objCollider.enabled = false;
         Event.OnBreak.Invoke(scoreValue);
@@ -113,7 +114,6 @@ public class BreakableObject : MonoBehaviour, ITargetable
 
     private IEnumerator ChangeColor()
     {
-        scoreValue = baseScoreValue;
 
         objMaterial.color = greenColor;
         objMaterial.SetColor("_EmissionColor", greenColor);
@@ -122,6 +122,7 @@ public class BreakableObject : MonoBehaviour, ITargetable
 
         while (t < 0.5f)
         {
+            scoreValue = baseScoreValue;
             normalizedTime = 0f;
             t += Time.deltaTime; 
             yield return null;
@@ -131,16 +132,15 @@ public class BreakableObject : MonoBehaviour, ITargetable
         {
             t += Time.deltaTime;
             normalizedTime = t / timeToShoot;
-
             scoreValue = (int)(baseScoreValue * (1 - normalizedTime));
-
             emissionColor = Color.Lerp(greenColor, redColor, normalizedTime);
             objMaterial.color = emissionColor;
             objMaterial.SetColor("_EmissionColor", emissionColor);
 
             yield return null;
         }
-        scoreValue = redScoreValue;
+        if (normalizedTime >= 1f)
+            scoreValue = redScoreValue;
 
     }
 
@@ -153,6 +153,7 @@ public class BreakableObject : MonoBehaviour, ITargetable
         }
         StopAllCoroutines();
         isChanging = false;
+
         StartCoroutine(ChangeColor());
     }
 

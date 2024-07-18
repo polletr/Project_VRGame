@@ -6,6 +6,8 @@ public class Spawner : MonoBehaviour
 {
     [SerializeField]
     private float speed;
+
+    private float currentSpeed;
     [SerializeField]
     private GameObject BeatBoxObj;
 
@@ -53,9 +55,11 @@ public class Spawner : MonoBehaviour
         ChooseSpawnPoint(currentLane, currentDirection);
         GameObject spawnedObject = Instantiate(BeatBoxObj, spawnPoint.position, Quaternion.identity);
         Rigidbody rb = spawnedObject.GetComponent<Rigidbody>();
+        currentSpeed = Random.Range(0.5f * speed, speed * 1.5f);
+        speed = speed * 1.005f;
         if (rb != null)
         {
-            rb.AddForce(currentDirection == Direction.Left ? Vector3.left * speed : Vector3.right * speed, ForceMode.Impulse);
+            rb.AddForce(currentDirection == Direction.Left ? Vector3.left * currentSpeed : Vector3.right * currentSpeed, ForceMode.Impulse);
         }
     }
 

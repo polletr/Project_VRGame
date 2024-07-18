@@ -60,7 +60,7 @@ public class ScoreManager : Singleton<ScoreManager>
             }
         }
 
-        if (score > maxPoints)
+        if (score >= maxPoints)
         {
             return "A+"; 
         }
