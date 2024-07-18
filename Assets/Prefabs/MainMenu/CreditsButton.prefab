@@ -194,6 +194,7 @@ MonoBehaviour:
   - {fileID: 8819570560977923105}
   - {fileID: 1975813871020828048}
   - {fileID: 1056175887885965112}
+  menuBreakClip: {fileID: 8300000, guid: d7f0b3fed25230844b7bb1df1dcbc0c8, type: 3}
   OnHitEvent:
     m_PersistentCalls:
       m_Calls: []
