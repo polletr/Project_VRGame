@@ -38,7 +38,6 @@ public class BreakableObject : MonoBehaviour, ITargetable
     [SerializeField]
     private float timeToShoot = 1f;
 
-    private bool isChanging = false;
     [SerializeField]
     private int redScoreValue;
     // Sine wave parameters
@@ -117,7 +116,6 @@ public class BreakableObject : MonoBehaviour, ITargetable
 
         objMaterial.color = greenColor;
         objMaterial.SetColor("_EmissionColor", greenColor);
-        isChanging = true;
         float t = 0;
 
         while (t < 0.5f)
@@ -128,7 +126,7 @@ public class BreakableObject : MonoBehaviour, ITargetable
             yield return null;
         }
         t = 0;
-        while (t < timeToShoot && isChanging)
+        while (t < timeToShoot)
         {
             t += Time.deltaTime;
             normalizedTime = t / timeToShoot;
@@ -139,8 +137,7 @@ public class BreakableObject : MonoBehaviour, ITargetable
 
             yield return null;
         }
-        if (normalizedTime >= 1f)
-            scoreValue = redScoreValue;
+        scoreValue = redScoreValue;
 
     }
 
@@ -152,7 +149,6 @@ public class BreakableObject : MonoBehaviour, ITargetable
           pointsAdded = true;
         }
         StopAllCoroutines();
-        isChanging = false;
 
         StartCoroutine(ChangeColor());
     }

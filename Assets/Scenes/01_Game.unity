@@ -730,7 +730,7 @@ MonoBehaviour:
   - {fileID: 1854691218}
   - {fileID: 1465690632}
   - {fileID: 8190471311748385468}
-  spawnInterval: 1
+  spawnInterval: 1.3
   Event: {fileID: 11400000, guid: ca9cd37548ba1174aacb9e50199d876d, type: 2}
 --- !u!4 &164793958
 Transform:
