@@ -183,7 +183,7 @@ MonoBehaviour:
   - {fileID: 6630222926976643434}
   timeToShoot: 2
   redScoreValue: -20
-  menuBreakClip: {fileID: 0}
+  menuBreakClip: {fileID: 8300000, guid: 259f3f29b916804478052da0c11d8f2e, type: 3}
   amplitude: 1
 --- !u!135 &4574878368504775420
 SphereCollider:

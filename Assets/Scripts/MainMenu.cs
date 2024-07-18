@@ -23,15 +23,12 @@ public class MainMenu : MonoBehaviour
     private Transform creditButtonPos;
 
     public float delay = 5f;
-
-    public AudioClip BGMenuMusic;
-
-    [Header("Game Event")]
-    public GameEvent Event;
+    [SerializeField]
+    private AudioClip BGMenuMusic;
 
     private void Awake()
     {
-        Event.PlayClip?.Invoke(BGMenuMusic);
+        AudioManager.Instance.PlayAudio(BGMenuMusic, true);
         creditsMenu.SetActive(false);
     }
 

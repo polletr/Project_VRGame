@@ -5416,8 +5416,7 @@ MonoBehaviour:
   creditsBackPos: {fileID: 282813262}
   creditButtonPos: {fileID: 282011275}
   delay: 1
-  BGMenuMusic: {fileID: 0}
-  Event: {fileID: 11400000, guid: ca9cd37548ba1174aacb9e50199d876d, type: 2}
+  BGMenuMusic: {fileID: 8300000, guid: 1433f228696e18749973e5652199dfed, type: 3}
 --- !u!4 &1014306972 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 413522, guid: e2b1e7ce58c743c4d8d59a66eec6422b, type: 3}
