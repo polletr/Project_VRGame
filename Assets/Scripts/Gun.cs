@@ -27,6 +27,8 @@ public class Gun : MonoBehaviour
     [SerializeField]
     private GameObject flash;
 
+    [SerializeField]
+    private AudioClip gunShotClip;
 
     private HapticFeedback hapticFeedback;
 
@@ -53,6 +55,7 @@ public class Gun : MonoBehaviour
     {
         StartCoroutine(FlashShoot());
         animator.Play(shootAnimation);
+        AudioManager.Instance.PlayAudio(gunShotClip);
         hapticFeedback.OnTriggerHaptic(controller);
         Ray ray = new Ray(_bulletSpawnPoint.position, _bulletSpawnPoint.forward);
         RaycastHit hit;

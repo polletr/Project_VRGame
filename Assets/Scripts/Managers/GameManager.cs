@@ -10,11 +10,19 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float bloomIntensityMax;
     [SerializeField] private float bloomTime = 1f;
 
+
+    [SerializeField] private AudioClip EndGameClip;
+
+    [Header("Menus")]
+    [SerializeField] private GameObject ScoreUI;
+    [SerializeField] private GameObject GradeUI;
+
+    [Header("Events")]
     public GameEvent Event;
 
 
     private Bloom bloom;
-  
+
     void Start()
     {
         // Get the Bloom component from the volume
@@ -27,6 +35,12 @@ public class GameManager : MonoBehaviour
             Debug.LogError("Bloom effect not found in the volume profile.");
         }
     }
+    public void EndGame()
+    {
+        ScoreUI.SetActive(false);
+        GradeUI.SetActive(true);
+        AudioManager.Instance.PlayAudio(EndGameClip);
+    }
 
     private IEnumerator SetBloomIntensity()
     {
@@ -34,18 +48,18 @@ public class GameManager : MonoBehaviour
         bloom.intensity.value = bloomIntensityMax;
 
 
-       float t = 0;
-            while (t < bloomTime)
-            {
-                t += Time.deltaTime;
-                float normalizedTime = t / bloomTime;
+        float t = 0;
+        while (t < bloomTime)
+        {
+            t += Time.deltaTime;
+            float normalizedTime = t / bloomTime;
 
-                 float bloomIntensity = Mathf.Lerp(bloomIntensityMax, bloomIntensityMin, normalizedTime);
-                 bloom.intensity.value = bloomIntensity;
+            float bloomIntensity = Mathf.Lerp(bloomIntensityMax, bloomIntensityMin, normalizedTime);
+            bloom.intensity.value = bloomIntensity;
 
 
-                yield return null;
-            }
+            yield return null;
+        }
     }
     private void BloomTime()
     {
@@ -55,11 +69,11 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         Event.OnBeat.AddListener(BloomTime);
-    }  
+    }
 
     private void OnDisable()
     {
         Event.OnBeat.RemoveListener(BloomTime);
     }
 
-} 
+}

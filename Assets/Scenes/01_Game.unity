@@ -3439,6 +3439,9 @@ MonoBehaviour:
   bloomIntensityMin: 4
   bloomIntensityMax: 50
   bloomTime: 1
+  EndGameClip: {fileID: 0}
+  ScoreUI: {fileID: 2036684430}
+  GradeUI: {fileID: 858718094}
   Event: {fileID: 11400000, guid: ca9cd37548ba1174aacb9e50199d876d, type: 2}
 --- !u!4 &651435973
 Transform:
@@ -4168,7 +4171,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &858718095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4249,8 +4252,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 10, y: 26.4}
-  m_SizeDelta: {x: 400, y: 150}
+  m_AnchoredPosition: {x: 0, y: 26.4}
+  m_SizeDelta: {x: 750, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &862968988
 PrefabInstance:
@@ -7166,12 +7169,42 @@ MonoBehaviour:
   m_Events:
     m_Signals:
     - {fileID: 11400000, guid: fe0f5223edb63e74098dd0799e7b1369, type: 2}
+    - {fileID: 11400000, guid: df7876538c06a3f4db94c32fe2fd878a, type: 2}
+    - {fileID: 11400000, guid: 63baaee04e4dceb4eb93218b91969ba5, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 11400000, guid: ca9cd37548ba1174aacb9e50199d876d, type: 2}
           m_TargetAssemblyTypeName: GameEvent, Assembly-CSharp
           m_MethodName: InvokeBeatEvent
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 651435972}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: EndGame
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 11400000, guid: ca9cd37548ba1174aacb9e50199d876d, type: 2}
+          m_TargetAssemblyTypeName: GameEvent, Assembly-CSharp
+          m_MethodName: InvokeEndEvent
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -7198,6 +7231,8 @@ PlayableDirector:
   m_SceneBindings:
   - key: {fileID: 7755868384968830705, guid: 74eb76b4e53cc0544ba03fa6a69e8722, type: 2}
     value: {fileID: 1439960178}
+  - key: {fileID: 7755868384968830705, guid: f7cf7ddbc8beffe40b2baaa66458f6ae, type: 2}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References: []
 --- !u!82 &1439960178
@@ -7209,7 +7244,7 @@ AudioSource:
   m_GameObject: {fileID: 1439960175}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -3445952040714450445, guid: c081c59d76d5d3145b09ab5cac8e9bab, type: 2}
   m_audioClip: {fileID: 8300000, guid: c5fbb4dd5111c1848b1925b4d96aeaa4, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -10306,6 +10341,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 479420, guid: 8e6be04d8370d1c4fa754d22592984f1, type: 3}
   m_PrefabInstance: {fileID: 2006301029}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2006530766
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3003241091520956159, guid: 7b0cd201a283fd049908a2bef2e8f669, type: 3}
+      propertyPath: m_Name
+      value: '[AudioManager]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3711493788793551953, guid: 7b0cd201a283fd049908a2bef2e8f669, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 17.41845
+      objectReference: {fileID: 0}
+    - target: {fileID: 3711493788793551953, guid: 7b0cd201a283fd049908a2bef2e8f669, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.6583567
+      objectReference: {fileID: 0}
+    - target: {fileID: 3711493788793551953, guid: 7b0cd201a283fd049908a2bef2e8f669, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 20.791962
+      objectReference: {fileID: 0}
+    - target: {fileID: 3711493788793551953, guid: 7b0cd201a283fd049908a2bef2e8f669, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3711493788793551953, guid: 7b0cd201a283fd049908a2bef2e8f669, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3711493788793551953, guid: 7b0cd201a283fd049908a2bef2e8f669, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3711493788793551953, guid: 7b0cd201a283fd049908a2bef2e8f669, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3711493788793551953, guid: 7b0cd201a283fd049908a2bef2e8f669, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3711493788793551953, guid: 7b0cd201a283fd049908a2bef2e8f669, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3711493788793551953, guid: 7b0cd201a283fd049908a2bef2e8f669, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7b0cd201a283fd049908a2bef2e8f669, type: 3}
 --- !u!1001 &2016518913
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10521,8 +10613,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -10, y: 26.4}
-  m_SizeDelta: {x: 400, y: 150}
+  m_AnchoredPosition: {x: 0, y: 26.4}
+  m_SizeDelta: {x: 750, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &2044555751
 PrefabInstance:
@@ -11089,3 +11181,4 @@ SceneRoots:
   - {fileID: 651435973}
   - {fileID: 1439960179}
   - {fileID: 7512348841888211644}
+  - {fileID: 2006530766}

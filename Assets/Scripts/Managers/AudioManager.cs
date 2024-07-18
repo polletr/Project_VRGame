@@ -12,6 +12,9 @@ public class AudioManager : Singleton<AudioManager>
     [SerializeField] private AudioMixerGroup bgMusicGroup;
     [SerializeField] private AudioMixerGroup sfxGroup;
 
+    [Header("AudioSourcePrefab"),SerializeField] 
+    private AudioSource audioSourcePrefab;
+
     [Header("Game Event")]
     public GameEvent gameEvent;
 
@@ -25,7 +28,7 @@ public class AudioManager : Singleton<AudioManager>
         }
     }
 
-    private void PlayAudio(AudioClip clip, bool isBgMusic)
+    public void PlayAudio(AudioClip clip, bool isBgMusic = false)
     {
         AudioSource audioSource = GetAvailableAudioSource();
 
@@ -38,10 +41,6 @@ public class AudioManager : Singleton<AudioManager>
             audioSource.clip = clip;
             audioSource.Play();
         }
-        else
-        {
-            Debug.LogWarning("No available audio sources");
-        }
     }
 
     private AudioSource GetAvailableAudioSource()
@@ -53,7 +52,11 @@ public class AudioManager : Singleton<AudioManager>
                 return audioSource;
             }
         }
-        return null;
+
+        AudioSource newAudioSource = Instantiate(audioSourcePrefab, transform);
+        _audioSources.Add(newAudioSource);
+        Debug.Log("New Audio Source Created");
+        return newAudioSource;
     }
 
     public void StopAllAudio()

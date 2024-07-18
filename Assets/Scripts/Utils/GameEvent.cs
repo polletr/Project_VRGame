@@ -6,6 +6,7 @@ public class GameEvent : ScriptableObject
     public UnityEvent OnBeat;
     public UnityEvent<int> OnBreak;
     public UnityEvent OnSpawn;
+    public UnityEvent OnGameEnd;
 
     public UnityEvent<AudioClip> PlayClip;
     public UnityEvent<AudioClip> PlayBGMusic;
@@ -13,5 +14,9 @@ public class GameEvent : ScriptableObject
     public void InvokeBeatEvent()
     {
         OnBeat.Invoke();
+    }
+    public void InvokeEndEvent()
+    {
+        OnGameEnd.Invoke();
     }
 }

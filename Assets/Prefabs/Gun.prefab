@@ -49,11 +49,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shoot: {fileID: 83097790271614945, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  _fireRate: 0.1
+  controller: {fileID: 0}
   bulletPrefab: {fileID: 306627607546150294, guid: 1d08147528653de489e05aaecb921b6e, type: 3}
   _bulletSpawnPoint: {fileID: 4959430115083608379}
   _lineRenderer: {fileID: 5290741096330048313}
-  _maxAimDistance: 100
+  animator: {fileID: 0}
+  flashRate: 0.3
+  flash: {fileID: 0}
+  gunShotClip: {fileID: 8300000, guid: d794d31b5ca5e1d48b20afa6bdda6382, type: 3}
 --- !u!120 &5290741096330048313
 LineRenderer:
   serializedVersion: 2

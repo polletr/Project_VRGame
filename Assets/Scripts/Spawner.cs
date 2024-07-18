@@ -31,18 +31,23 @@ public class Spawner : MonoBehaviour
  
     private void Awake()
     {
-        Event.OnSpawn.AddListener(SpawnBox);
         spawnTimer = new CountdownTimer(spawnInterval);
         spawnTimer.Start();
         spawnTimer.OnTimerStop += SpawnBox;
         spawnTimer.OnTimerStop += () => spawnTimer.Start();
 
     }
-
+    private void OnEnable()
+    {
+        Event.OnGameEnd.AddListener(() => spawnTimer.OnTimerStop -= SpawnBox);
+    }
+    private void OnDisable()
+    {
+        Event.OnGameEnd.RemoveListener(() => spawnTimer.OnTimerStop -= SpawnBox);
+    }
 
     private void Update()
     {
-        Event.OnSpawn.RemoveListener(SpawnBox);
         spawnTimer.Tick(Time.deltaTime);
     }
 

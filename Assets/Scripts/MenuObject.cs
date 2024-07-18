@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-public class MenuObject : MonoBehaviour , ITargetable
+public class MenuObject : MonoBehaviour, ITargetable
 {
     [SerializeField]
     private GameObject FullObj;
@@ -14,9 +14,12 @@ public class MenuObject : MonoBehaviour , ITargetable
     private float force = 100f;
     [SerializeField]
     private GameObject[] shardPeices;
+    [SerializeField]
+    private AudioClip menuBreakClip;
 
-     public UnityEvent OnHitEvent;
+    public UnityEvent OnHitEvent;
     private Collider col;
+
 
     private void Awake()
     {
@@ -26,12 +29,12 @@ public class MenuObject : MonoBehaviour , ITargetable
 
     public void OnHit()
     {
-       col.enabled = false;
+        col.enabled = false;
         Switch(false);
         Destroy(gameObject, 3f);
-
+        AudioManager.Instance.PlayAudio(menuBreakClip);
         Explode();
-       OnHitEvent.Invoke();
+        OnHitEvent.Invoke();
     }
 
     public void Explode()

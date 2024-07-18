@@ -40,6 +40,9 @@ public class BreakableObject : MonoBehaviour, ITargetable
 
     [SerializeField]
     private int redScoreValue;
+    [SerializeField]
+    private AudioClip menuBreakClip;
+
     // Sine wave parameters
     [SerializeField]
     private float amplitude = 1f; // Amplitude of the sine wave
@@ -86,7 +89,7 @@ public class BreakableObject : MonoBehaviour, ITargetable
     public void OnHit()
     {
         Event.OnBeat.RemoveListener(ChangeColorToGreen);
-
+        AudioManager.Instance.PlayAudio(menuBreakClip);
         StopAllCoroutines();
         Debug.Log(scoreValue + "On Destroy");
         Instantiate(pointPopUp, transform.position + new Vector3(0, 0, -4f), Quaternion.identity);

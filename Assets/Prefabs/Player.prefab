@@ -404,6 +404,10 @@ PrefabInstance:
       propertyPath: controller
       value: 
       objectReference: {fileID: 7543090745871638553}
+    - target: {fileID: 969015302537709529, guid: 2ddc8f60a620d954b90e9c57b3dc3bb9, type: 3}
+      propertyPath: gunShotClip
+      value: 
+      objectReference: {fileID: 8300000, guid: d794d31b5ca5e1d48b20afa6bdda6382, type: 3}
     - target: {fileID: 6629968214261891008, guid: 2ddc8f60a620d954b90e9c57b3dc3bb9, type: 3}
       propertyPath: m_Name
       value: Gun
