@@ -9874,6 +9874,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 504070079755025142, guid: 7b0cd201a283fd049908a2bef2e8f669, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1431489510885520440, guid: 7b0cd201a283fd049908a2bef2e8f669, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3003241091520956159, guid: 7b0cd201a283fd049908a2bef2e8f669, type: 3}
       propertyPath: m_Name
       value: '[AudioManager]'
@@ -9916,6 +9924,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3711493788793551953, guid: 7b0cd201a283fd049908a2bef2e8f669, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3866816676690937418, guid: 7b0cd201a283fd049908a2bef2e8f669, type: 3}
+      propertyPath: m_Volume
+      value: 0.485
+      objectReference: {fileID: 0}
+    - target: {fileID: 3866816676690937418, guid: 7b0cd201a283fd049908a2bef2e8f669, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6939138923469630612, guid: 7b0cd201a283fd049908a2bef2e8f669, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8638628605239965159, guid: 7b0cd201a283fd049908a2bef2e8f669, type: 3}
+      propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

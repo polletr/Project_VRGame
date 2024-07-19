@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -74,6 +75,16 @@ public class GameManager : MonoBehaviour
     private void OnDisable()
     {
         Event.OnBeat.RemoveListener(BloomTime);
+    }
+
+
+    public void OnPlayAgain()
+    {
+      SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    public void OnQuit()
+    {
+        SceneManager.LoadScene(0);
     }
 
 }
