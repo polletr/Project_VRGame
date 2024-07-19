@@ -5129,87 +5129,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 464886, guid: 4290c366a38253b4f87a53b8a3654483, type: 3}
   m_PrefabInstance: {fileID: 1034156366}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1035490721
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2716177982690316252, guid: b03c66a87552b7540a96c53c63b8d316, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 6.163274
-      objectReference: {fileID: 0}
-    - target: {fileID: 2716177982690316252, guid: b03c66a87552b7540a96c53c63b8d316, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 8.901315
-      objectReference: {fileID: 0}
-    - target: {fileID: 2716177982690316252, guid: b03c66a87552b7540a96c53c63b8d316, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 1.3281338
-      objectReference: {fileID: 0}
-    - target: {fileID: 2716177982690316252, guid: b03c66a87552b7540a96c53c63b8d316, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2716177982690316252, guid: b03c66a87552b7540a96c53c63b8d316, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2716177982690316252, guid: b03c66a87552b7540a96c53c63b8d316, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2716177982690316252, guid: b03c66a87552b7540a96c53c63b8d316, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2716177982690316252, guid: b03c66a87552b7540a96c53c63b8d316, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2716177982690316252, guid: b03c66a87552b7540a96c53c63b8d316, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2716177982690316252, guid: b03c66a87552b7540a96c53c63b8d316, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4697982428263582847, guid: b03c66a87552b7540a96c53c63b8d316, type: 3}
-      propertyPath: m_SceneBindings.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4697982428263582847, guid: b03c66a87552b7540a96c53c63b8d316, type: 3}
-      propertyPath: m_SceneBindings.Array.data[1].key
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4697982428263582847, guid: b03c66a87552b7540a96c53c63b8d316, type: 3}
-      propertyPath: m_SceneBindings.Array.data[2].key
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4697982428263582847, guid: b03c66a87552b7540a96c53c63b8d316, type: 3}
-      propertyPath: m_SceneBindings.Array.data[0].value
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4697982428263582847, guid: b03c66a87552b7540a96c53c63b8d316, type: 3}
-      propertyPath: m_SceneBindings.Array.data[1].value
-      value: 
-      objectReference: {fileID: 164793956}
-    - target: {fileID: 4697982428263582847, guid: b03c66a87552b7540a96c53c63b8d316, type: 3}
-      propertyPath: m_SceneBindings.Array.data[2].value
-      value: 
-      objectReference: {fileID: 164793956}
-    - target: {fileID: 5030265510163638544, guid: b03c66a87552b7540a96c53c63b8d316, type: 3}
-      propertyPath: m_Name
-      value: TimeLineObj
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b03c66a87552b7540a96c53c63b8d316, type: 3}
 --- !u!1001 &1035784338
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7234,7 +7153,7 @@ PlayableDirector:
   - key: {fileID: 7755868384968830705, guid: 74eb76b4e53cc0544ba03fa6a69e8722, type: 2}
     value: {fileID: 1439960178}
   - key: {fileID: 7755868384968830705, guid: f7cf7ddbc8beffe40b2baaa66458f6ae, type: 2}
-    value: {fileID: 0}
+    value: {fileID: 1439960178}
   m_ExposedReferences:
     m_References: []
 --- !u!82 &1439960178
@@ -11393,7 +11312,6 @@ SceneRoots:
   - {fileID: 858718098}
   - {fileID: 967124692}
   - {fileID: 1762952919}
-  - {fileID: 1035490721}
   - {fileID: 1384437421}
   - {fileID: 278714596}
   - {fileID: 651435973}

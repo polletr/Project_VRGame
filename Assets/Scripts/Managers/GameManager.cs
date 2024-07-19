@@ -78,13 +78,26 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public void OnPlayAgain()
+    public void OnPlayAgain() => StartCoroutine(PlayDelay());
+    public void OnQuit() => StartCoroutine(QuitDelay());
+
+
+    public IEnumerator PlayDelay()
     {
-      SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        while (true)
+        {
+            yield return new WaitForSeconds(2f);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
-    public void OnQuit()
+    public IEnumerator QuitDelay()
     {
-        SceneManager.LoadScene(0);
+        while (true)
+        {
+            yield return new WaitForSeconds(2f);
+            Application.Quit();
+            SceneManager.LoadScene(0);
+        }
     }
 
 }
