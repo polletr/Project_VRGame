@@ -25,6 +25,7 @@ public class Spawner : MonoBehaviour
 
     private Direction currentDirection = Direction.Right;
     private Lane currentLane = Lane.Lane1;
+    private Quaternion _rotation;
 
     private Transform spawnPoint;
 
@@ -35,7 +36,7 @@ public class Spawner : MonoBehaviour
         spawnTimer.Start();
         spawnTimer.OnTimerStop += SpawnBox;
         spawnTimer.OnTimerStop += () => spawnTimer.Start();
-
+        _rotation = Quaternion.Euler(0, 0, 0);
     }
     private void OnEnable()
     {
@@ -58,7 +59,7 @@ public class Spawner : MonoBehaviour
         currentDirection = GetDirection();
         previousDirection = currentDirection;
         ChooseSpawnPoint(currentLane, currentDirection);
-        GameObject spawnedObject = Instantiate(BeatBoxObj, spawnPoint.position, Quaternion.identity);
+        GameObject spawnedObject = Instantiate(BeatBoxObj, spawnPoint.position, _rotation);
         Rigidbody rb = spawnedObject.GetComponent<Rigidbody>();
         currentSpeed = Random.Range(0.5f * speed, speed * 1.5f);
         speed = speed * 1.005f;
@@ -75,6 +76,7 @@ public class Spawner : MonoBehaviour
             if (laneObject.laneID == lane)
             {
                 spawnPoint = direction != Direction.Left ? laneObject.LeftSpawnPos : laneObject.RightSpawnPos;
+                _rotation = direction != Direction.Left ? Quaternion.identity : Quaternion.Euler(0, 180, 0);
                 return;
             }
         }
