@@ -725,7 +725,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 8
-  BeatBoxObj: {fileID: 1984216778623581739, guid: e2a3f1f3a572ac444a79da740736b1f3, type: 3}
+  BeatBoxObj: {fileID: 1984216778623581739, guid: a24e761ce018a7d409ee257fe9d0f2aa, type: 3}
   laneObjects:
   - {fileID: 1854691218}
   - {fileID: 1465690632}
@@ -3437,7 +3437,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   volume: {fileID: 1384437420}
   bloomIntensityMin: 4
-  bloomIntensityMax: 50
+  bloomIntensityMax: 15
   bloomTime: 1
   EndGameClip: {fileID: 0}
   ScoreUI: {fileID: 2036684430}
