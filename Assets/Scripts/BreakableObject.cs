@@ -54,10 +54,13 @@ public class BreakableObject : MonoBehaviour, ITargetable
     private bool pointsAdded = false;
     private Color emissionColor;
 
+    private Transform playerPos;
+
     private void Awake()
     {
         objRenderer = FullObj.GetComponentInChildren<Renderer>();
         objCollider = GetComponent<Collider>();
+        playerPos = GameObject.FindGameObjectWithTag("Player").transform;
         if (objRenderer != null)
         {
             objMaterial = objRenderer.material;
@@ -78,6 +81,8 @@ public class BreakableObject : MonoBehaviour, ITargetable
     {
         if (canMove)
             Travel();
+
+        transform.LookAt(playerPos);
     }
 
     private void Travel()
