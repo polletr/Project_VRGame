@@ -17,12 +17,30 @@ public class GameManager : MonoBehaviour
     [Header("Menus")]
     [SerializeField] private GameObject ScoreUI;
     [SerializeField] private GameObject GradeUI;
+    [SerializeField] private GameObject TutorialText;
+
 
     [Header("Events")]
     public GameEvent Event;
 
 
     private Bloom bloom;
+
+    public bool tutorialOn;
+
+    private void OnEnable()
+    {
+        Event.OnBreak.AddListener(DisableTutorial);
+        Event.OnBeat.AddListener(BloomTime);
+
+    }
+
+    private void OnDisable()
+    {
+        Event.OnBreak.RemoveListener(DisableTutorial);
+        Event.OnBeat.RemoveListener(BloomTime);
+
+    }
 
     void Start()
     {
@@ -35,12 +53,22 @@ public class GameManager : MonoBehaviour
         {
             Debug.LogError("Bloom effect not found in the volume profile.");
         }
+        tutorialOn = true;
+        Coroutine tutorialFadeCoroutine = StartCoroutine(TutorialFade());
     }
     public void EndGame()
     {
         ScoreUI.SetActive(false);
         GradeUI.SetActive(true);
         AudioManager.Instance.PlayAudio(EndGameClip);
+    }
+
+    private void DisableTutorial(int score)
+    {
+        if (score > 20)
+        {
+            tutorialOn = false;
+        }
     }
 
     private IEnumerator SetBloomIntensity()
@@ -67,17 +95,6 @@ public class GameManager : MonoBehaviour
         StartCoroutine(SetBloomIntensity());
     }
 
-    private void OnEnable()
-    {
-        Event.OnBeat.AddListener(BloomTime);
-    }
-
-    private void OnDisable()
-    {
-        Event.OnBeat.RemoveListener(BloomTime);
-    }
-
-
     public void OnPlayAgain() => StartCoroutine(PlayDelay());
     public void OnQuit() => StartCoroutine(QuitDelay());
 
@@ -88,6 +105,32 @@ public class GameManager : MonoBehaviour
         {
             yield return new WaitForSeconds(2f);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+    }
+
+    private IEnumerator TutorialFade()
+    {
+        CanvasGroup canvasGroup = TutorialText.GetComponent<CanvasGroup>();
+
+        while (tutorialOn)
+        {
+            // Fade in
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 1.0f)
+            {
+                canvasGroup.alpha = t;
+                yield return null;
+            }
+            canvasGroup.alpha = 1.0f;
+
+            yield return new WaitForSeconds(1f);
+
+            // Fade out
+            for (float t = 1.0f; t > 0.0f; t -= Time.deltaTime / 1.0f)
+            {
+                canvasGroup.alpha = t;
+                yield return null;
+            }
+            canvasGroup.alpha = 0.0f;
         }
     }
     public IEnumerator QuitDelay()

@@ -19,8 +19,8 @@ public class BreakableObject : MonoBehaviour, ITargetable
 
     public GameEvent Event;
 
-    public Color redColor = Color.red;
-    public Color greenColor = Color.green;
+    public Color idleColor = Color.blue;
+    public Color shootColor = Color.red;
 
     private Renderer objRenderer;
     private Material objMaterial;
@@ -64,9 +64,9 @@ public class BreakableObject : MonoBehaviour, ITargetable
         if (objRenderer != null)
         {
             objMaterial = objRenderer.material;
-            objMaterial.color = redColor;
+            objMaterial.color = idleColor;
             objMaterial.EnableKeyword("_EMISSION"); // Enable emission
-            objMaterial.SetColor("_EmissionColor", redColor);
+            objMaterial.SetColor("_EmissionColor", idleColor);
         }
 
         frequency = Random.Range(2f, 5f);
@@ -125,8 +125,8 @@ public class BreakableObject : MonoBehaviour, ITargetable
     private IEnumerator ChangeColor()
     {
 
-        objMaterial.color = greenColor;
-        objMaterial.SetColor("_EmissionColor", greenColor);
+        objMaterial.color = shootColor;
+        objMaterial.SetColor("_EmissionColor", shootColor);
         float t = 0;
 
         while (t < 0.5f)
@@ -142,7 +142,7 @@ public class BreakableObject : MonoBehaviour, ITargetable
             t += Time.deltaTime;
             normalizedTime = t / timeToShoot;
             scoreValue = (int)(baseScoreValue * (1 - normalizedTime));
-            emissionColor = Color.Lerp(greenColor, redColor, normalizedTime);
+            emissionColor = Color.Lerp(shootColor, idleColor, normalizedTime);
             objMaterial.color = emissionColor;
             objMaterial.SetColor("_EmissionColor", emissionColor);
 

@@ -114,8 +114,8 @@ MonoBehaviour:
   pointPopUp: {fileID: 6401124870279345557, guid: 2d59bdd805eb04d44b116bc882a6c6f2, type: 3}
   baseScoreValue: 100
   Event: {fileID: 11400000, guid: ca9cd37548ba1174aacb9e50199d876d, type: 2}
-  redColor: {r: 1, g: 0, b: 0, a: 1}
-  greenColor: {r: 0, g: 1, b: 0, a: 1}
+  idleColor: {r: 0.5801887, g: 1, b: 0.97811514, a: 1}
+  shootColor: {r: 1, g: 0, b: 0.02109909, a: 1}
   objCollider: {fileID: 4574878368504775420}
   force: 1000
   shardPeices:
