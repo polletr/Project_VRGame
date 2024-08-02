@@ -43,6 +43,8 @@ public class BreakableObject : MonoBehaviour, ITargetable
     [SerializeField]
     private AudioClip menuBreakClip;
 
+    [SerializeField] ParticleSystem breakParticles;
+
     // Sine wave parameters
     [SerializeField]
     private float amplitude = 1f; // Amplitude of the sine wave
@@ -88,6 +90,7 @@ public class BreakableObject : MonoBehaviour, ITargetable
 
     public void OnHit()
     {
+        breakParticles.gameObject.SetActive(true);
         Event.OnBeat.RemoveListener(ChangeColorToGreen);
         AudioManager.Instance.PlayAudio(menuBreakClip);
         StopAllCoroutines();
