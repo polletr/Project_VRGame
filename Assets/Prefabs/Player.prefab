@@ -416,6 +416,14 @@ PrefabInstance:
       propertyPath: intensity
       value: 0.8
       objectReference: {fileID: 0}
+    - target: {fileID: 5290741096330048313, guid: 2ddc8f60a620d954b90e9c57b3dc3bb9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bf1bfcf389fedb349a6a976cb04c3eb2, type: 2}
+    - target: {fileID: 5290741096330048313, guid: 2ddc8f60a620d954b90e9c57b3dc3bb9, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
+      value: 0.0049858093
+      objectReference: {fileID: 0}
     - target: {fileID: 6629968214261891008, guid: 2ddc8f60a620d954b90e9c57b3dc3bb9, type: 3}
       propertyPath: m_Name
       value: Gun
@@ -505,6 +513,14 @@ PrefabInstance:
     - target: {fileID: 3202360839873555658, guid: 2ddc8f60a620d954b90e9c57b3dc3bb9, type: 3}
       propertyPath: intensity
       value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5290741096330048313, guid: 2ddc8f60a620d954b90e9c57b3dc3bb9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bf1bfcf389fedb349a6a976cb04c3eb2, type: 2}
+    - target: {fileID: 5290741096330048313, guid: 2ddc8f60a620d954b90e9c57b3dc3bb9, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
+      value: 0.0049858093
       objectReference: {fileID: 0}
     - target: {fileID: 6629968214261891008, guid: 2ddc8f60a620d954b90e9c57b3dc3bb9, type: 3}
       propertyPath: m_Name

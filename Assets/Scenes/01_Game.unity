@@ -1711,8 +1711,8 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Color: {r: 0.33521715, g: 0.60989326, b: 0.764151, a: 1}
+  m_Intensity: 0.05
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -3437,7 +3437,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   volume: {fileID: 1384437420}
   bloomIntensityMin: 4
-  bloomIntensityMax: 15
+  bloomIntensityMax: 25
   bloomTime: 1
   EndGameClip: {fileID: 0}
   ScoreUI: {fileID: 2036684430}
@@ -11212,6 +11212,26 @@ PrefabInstance:
     - target: {fileID: 170867228129627555, guid: b87b1b1a20d37f8498488cd10ef0fe31, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 874446979411794420, guid: b87b1b1a20d37f8498488cd10ef0fe31, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bf1bfcf389fedb349a6a976cb04c3eb2, type: 2}
+    - target: {fileID: 874446979411794420, guid: b87b1b1a20d37f8498488cd10ef0fe31, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].time
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 874446979411794420, guid: b87b1b1a20d37f8498488cd10ef0fe31, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
+      value: 0.0049858093
+      objectReference: {fileID: 0}
+    - target: {fileID: 3186284360090903453, guid: b87b1b1a20d37f8498488cd10ef0fe31, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bf1bfcf389fedb349a6a976cb04c3eb2, type: 2}
+    - target: {fileID: 3186284360090903453, guid: b87b1b1a20d37f8498488cd10ef0fe31, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
+      value: 0.0049858093
       objectReference: {fileID: 0}
     - target: {fileID: 5579205327115810081, guid: b87b1b1a20d37f8498488cd10ef0fe31, type: 3}
       propertyPath: m_Name
