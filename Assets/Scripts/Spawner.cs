@@ -36,7 +36,7 @@ public class Spawner : MonoBehaviour
         spawnTimer.Start();
         spawnTimer.OnTimerStop += SpawnBox;
         spawnTimer.OnTimerStop += () => spawnTimer.Start();
-        _rotation = Quaternion.Euler(0, 0, 0);
+        //_rotation = Quaternion.Euler(0, 0, 0);
     }
     private void OnEnable()
     {
@@ -76,7 +76,7 @@ public class Spawner : MonoBehaviour
             if (laneObject.laneID == lane)
             {
                 spawnPoint = direction != Direction.Left ? laneObject.LeftSpawnPos : laneObject.RightSpawnPos;
-                _rotation = direction != Direction.Left ? Quaternion.identity : Quaternion.Euler(0, 180, 0);
+                //_rotation = direction != Direction.Left ? Quaternion.identity : Quaternion.Euler(0, 180, 0);
                 return;
             }
         }
