@@ -32,8 +32,8 @@ public class ScoreManager : Singleton<ScoreManager>
 
     private void SetText()
     {
-        scoreText.text = "Score: " + score.ToString();
-        gradeText.text = "Grade " + GetGrade(maxPointsInSong);
+        scoreText.text = "Score\n" + score.ToString();
+        gradeText.text = "Grade\n" + GetGrade(maxPointsInSong);
     }
     private void OnEnable()
     {
