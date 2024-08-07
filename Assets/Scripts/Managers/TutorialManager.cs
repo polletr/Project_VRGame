@@ -11,6 +11,7 @@ public class TutorialManager : Singleton<TutorialManager>
     public GameData CurrentGameData => _gameData;
 
     [SerializeField] bool wipe = false;
+    [SerializeField] TutorialBox tutorialBox;
 
     private string permanentDataFilePath;
 
@@ -38,6 +39,8 @@ public class TutorialManager : Singleton<TutorialManager>
 
         if(_gameData.isFirstTime)
             ShowTutorial();
+
+        tutorialBox.SetObject(_gameData.isFirstTime);
     }
 
     private void ShowTutorial()
