@@ -22,6 +22,7 @@ public class BreakableObject : MonoBehaviour, ITargetable
     public Color idleColor = Color.blue;
     public Color shootColor = Color.red;
 
+    [SerializeField,Header("ObjRender")]
     private Renderer objRenderer;
     private Material objMaterial;
 
@@ -58,7 +59,6 @@ public class BreakableObject : MonoBehaviour, ITargetable
 
     private void Awake()
     {
-        objRenderer = FullObj.GetComponentInChildren<Renderer>();
         objCollider = GetComponent<Collider>();
         playerPos = GameObject.FindGameObjectWithTag("Player").transform;
         if (objRenderer != null)
