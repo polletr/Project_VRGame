@@ -14,7 +14,7 @@ public class TutorialManager : Singleton<TutorialManager>
     [SerializeField] TutorialBox tutorialBox;
 
     private string permanentDataFilePath;
-
+    private Vector3 startPos;
     private void Awake()
     {
         if (Instance != this)
@@ -24,7 +24,7 @@ public class TutorialManager : Singleton<TutorialManager>
         }
         DontDestroyOnLoad(this.gameObject);
         permanentDataFilePath = Application.persistentDataPath + "/GameData.save";
-
+        startPos = tutorialBox.transform.position;
     }
 
     private void Start()
@@ -63,6 +63,16 @@ public class TutorialManager : Singleton<TutorialManager>
             Debug.Log("resetGame");
             wipe = false;
         }
+    }
+
+    public void WipeData()
+    {
+        _gameData.isFirstTime = true;
+        SavePermanentData();
+        Debug.Log("resetGame");
+        wipe = false;
+        tutorialBox.SetObject(_gameData.isFirstTime);
+        tutorialBox.transform.position = startPos;
     }
 
     #region Save/Load/Delete
